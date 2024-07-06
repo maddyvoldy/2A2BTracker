@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Line Tracker</title>
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2C3E50;
+            color: white;
+        }
+		.montserrat-gfont {
+			font-family: "Montserrat", sans-serif;
+			font-optical-sizing: auto;
+		}
+        .sidebar {
+            width: 60px;
+            height: 100vh;
+            background-color: #283848;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+        }
+        .sidebar-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sidebar-icon:hover {
+            background-color: #dddddd;
+        }
+        .home-icon {
+            margin-bottom: 40px; /* Creates gap after home icon */
+        }
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+			font-weight: 700;
+			font-style: bold;
+        }
+        .subheading {
+            text-align: center;
+			font-weight: 600;
+			font-style:	SemiBold;
+			letter-spacing: 3px;
+        }
+		.topbox-text {
+            font-size: 16px;
+			font-weight: bold;
+            margin-top: 0px;
+			margin-bottom: 20px;
+        }
+        .large-text {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .small-text {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .boxes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .box {
+            width: 180px;
+            height: 220px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .box:hover {
+            transform: scale(1.05);
+        }
+        .box-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+			margin-top: 10px;
+        }
+        #box1 { background: linear-gradient(to bottom, #314558, #283848); }
+        #box2 { background: linear-gradient(to bottom, #ff9933, #cc6600); }
+        #box3 { background: linear-gradient(to bottom, #66cc33, #339900); }
+        #box4 { background: linear-gradient(to bottom, #6DBCDB, #375E6E); }
+        #box5 { background: linear-gradient(to bottom, #24B8EF, #7579FF); }
+        #box6 { background: linear-gradient(to bottom, #B224EF, #7579FF); }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-icon home-icon" onclick="location.href='index.html';"><img src=".\icons\home.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page1.html';"><img src=".\icons\info2.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page2.html';"><img src=".\icons\buildings1_2.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page3.html';"><img src=".\icons\buildings1_2.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page4.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page5.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page6.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
+    </div>
+    <div class="content">
+        <h1 class="montserrat-gfont">ORR (PHASE 2A) & AIRPORT (PHASE 2B) METRO LINE TRACKER</h1>
+        <p class="subheading montserrat-gfont">BY: X.COM/MADDYVOLDY</p>
+		<div class="boxes">
+            <div class="box" id="box1" onclick="location.href='page1.html';">
+                <div class="box-icon"><img src=".\icons\info2.png" width=40px; height=40px; /a></div>
+                <div class="topbox-text";>2A-2B</div>
+                <div class="large-text";>INFO</div>
+                <p style="font-weight:500"; "font-style=medium";><i>Silkboard <br> To<br>Airport</i></p>
+            </div>
+            <div class="box" id="box2" onclick="location.href='page2.html';">
+                <div class="box-icon"><img src=".\icons\buildings1_2.png" width=40px; height=40px; /a></div>
+                <div class="topbox-text";>AFCONS</div>
+				<div class="large-text";>2A PKG-1</div>
+                <p style="font-weight:500"; font-style="medium";><i>Silkboard<br>To<br>Kadubeesanahalli</i></p>
+            </div>
+            <div class="box" id="box3" onclick="location.href='page3.html';">
+                <div class="box-icon"><img src=".\icons\buildings1_2.png" width=40px; height=40px; /a></div>
+                <div class="topbox-text";>SNC</div>
+				<div class="large-text";>2A PKG-2</div>
+                <p style="font-weight:500"; font-style="medium";><i>Kadubeesanahalli<br>To<br>Baiyappanahalli</i></p>
+            </div>
+            <div class="box" id="box4" onclick="location.href='page4.html';">
+                <div class="box-icon"><img src=".\icons\airplane.png" width=40px; height=40px; /a></div>
+                <div class="topbox-text";>NCC</div>
+				<div class="large-text";>2B PKG-1</div>
+                <p style="font-weight:500"; font-style="medium";><i>Baiyappanahalli<br>To<br>Kempapura</i></p>
+            </div>
+            <div class="box" id="box5" onclick="location.href='page5.html';">
+                <div class="box-icon"><img src=".\icons\airplane.png" width=40px; height=40px; /a></div>
+                <div class="topbox-text";>NCC</div>
+				<div class="large-text";>2B PKG-2</div>
+                <p style="font-weight:500"; font-style="medium";><i>Kempapura<br>To<br>Yelahanka IAF</i></p>
+            </div>
+            <div class="box" id="box6" onclick="location.href='page6.html';">
+                <div class="box-icon"><img src=".\icons\airplane.png" width=40px; height=40px; /a></div>
+                <div class="topbox-text";>NCC</div>
+				<div class="large-text";>2B PKG-3</div>
+                <p style="font-weight:500"; font-style="medium";><i>Yelahanka IAF<br>To<br>Kempegowda Airport</i></p>
+            </div>
+        </div>
+		<center><img src=".\icons\fullmap.png" width=500px; height=500px; /a></center>
+    </div>
+</body>
+</html>

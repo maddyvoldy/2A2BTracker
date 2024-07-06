@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILKBOARD TO KADUBEESANAHALLI</title>
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2C3E50;
+            color: white;
+        }
+		.montserrat-gfont {
+			font-family: "Montserrat", sans-serif;
+			font-optical-sizing: auto;
+		}
+        .sidebar {
+            width: 60px;
+            height: 100vh;
+            background-color: #283848;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+        }
+        .sidebar-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sidebar-icon:hover {
+            background-color: #dddddd;
+        }
+        .home-icon {
+            margin-bottom: 40px; /* Creates gap after home icon */
+        }
+
+        }
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+            
+        }
+        h1 {
+            font-weight: 700;
+			font-style: bold;
+			text-align: center;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-weight: 600;
+			font-style:	SemiBold;
+			text-align: center;
+			font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .box-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .vertical-box {
+            width: 180px;
+            height: 220px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .horizontal-box {
+            width: 28%;
+            height: 220px;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+		.icon {
+            font-size: 48px;
+            margin-bottom: 0px;
+        }
+        .subtext {
+            font-size: 16px;
+			font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .large-text {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 5px;
+			margin-top: 10px;
+        }
+        .small-text {
+            font-size: 14px;
+            font-weight: bold;
+			margin-top: 10px;
+        }
+        .highlight-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: black;
+            padding: 5px 10px;
+            border-top-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+			font-size: 14px;
+            font-weight: bold;
+        }
+
+        #box1 { background: linear-gradient(to bottom, #ff9933, #cc6600); }
+        #box2 { background: linear-gradient(to bottom, #66cc33, #339900); }
+        #box3 { background: linear-gradient(to bottom, #66ccff, #3399cc); }
+        #box4 { background: linear-gradient(to bottom, #9933cc, #660099); }
+		
+		.chart-container {
+            display: flex;
+            justify-content: center;
+			margin: 10px;
+		}
+		.chart {
+            width: 35.5%; /* Match width of first 3 boxes */
+            margin-right: 10px;
+		}
+		
+		.bar-chart, .line-chart {
+            height: 200px;
+            background-color: #f0f0f0;
+            margin-bottom: 20px;
+			border-radius: 10px;
+			padding: 10px;
+			padding-bottom: 27px;
+			position: relative;
+        }
+		
+		.month-buttons {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			margin-bottom: 10px;
+		}
+
+		.month-btn {
+			margin: 2px;
+			padding: 3px 6px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+			font-size: 12px;
+		}
+
+		.month-btn.active {
+			background-color: #45a049;
+		}
+		
+		.issues-box {
+            width: 28%; /* Match width of horizontal box */
+            background: linear-gradient(to bottom, #ff3333, #cc0000);
+            position: relative;
+            height: 463px;
+            border-radius: 10px;
+            padding: 15px;
+			margin-left: 10px;
+        }
+
+        .issues-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: black;
+            padding: 5px 10px;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .stations-header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            border-top: 2px solid white;
+            border-bottom: 2px solid white;
+            padding: 10px 0;
+        }
+
+        .stations-table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-top: 20px;
+			margin-left: 330px;
+			margin-bottom: 40px;
+        }
+
+        .stations-table th, .stations-table td {
+            border: 1px solid white;
+            padding: 12px;
+            text-align: center;
+			padding-bottom: 5px;
+			padding-top: 5px;
+        }
+
+        .stations-table th {
+            background-color: #283848;
+        }
+		
+		.flyover-table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-top: 20px;
+			margin-left: 380px;
+			margin-bottom: 40px;
+        }
+		
+		.flyover-table th, .flyover-table td {
+            border: 1px solid white;
+            padding: 12px;
+            text-align: center;
+			padding-bottom: 5px;
+			padding-top: 5px;
+        }
+
+        .flyover-table th {
+            background-color: #283848;
+        }
+		
+		
+		.tab {
+			display: inline-block;
+			margin-left: 4em;
+		}
+		.month-buttons {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 2px;
+		}
+
+		.month-btn {
+			margin: 0 5px;
+			padding: 5px 10px;
+			background-color: #33cccc;
+			color: white;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+
+		.month-btn.active {
+			background-color: #0099ff;
+		}
+		
+		#barChart {
+			height: 40px; /* Adjust height to fit buttons */
+		}
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-icon home-icon" onclick="location.href='index.html';"><img src=".\icons\home.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page1.html';"><img src=".\icons\info2.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page2.html';"><img src=".\icons\buildings1_2.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page3.html';"><img src=".\icons\buildings1_2.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page4.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page5.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page6.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
+    </div>
+    <div class="content">
+        <h1>SILKBOARD TO KADUBEESANAHALLI</h1>
+        <h2>CONTRACTOR : AFCONS INFRASTRUCTURE LIMITED</h2>
+        <h2>CONTRACT AWARDED : MAY 2021</h2>
+
+        <div class="box-container">
+            <div class="vertical-box" id="box1">
+                <div class="icon"><img src=".\icons\Pillar3.png" width=120px; height=75px; /a></div>
+                <div class="subtext">PIERS</div>
+                <div class="large-text">97%</div>
+                <div class="small-text">408 / 421</div>
+            </div>
+            <div class="vertical-box" id="box2">
+                <div class="icon"><img src=".\icons\PierCap3.png" width=120px; height=75px; /a></div>
+                <div class="subtext">PIER CAPS & BEAMS</div>
+                <div class="large-text">82%</div>
+                <div class="small-text">344 / 417</div>
+            </div>
+            <div class="vertical-box" id="box3">
+                <div class="icon"><img src=".\icons\Girder2.png" width=120px; height=75px; /a></div>
+                <div class="subtext">GIRDERS</div>
+                <div class="large-text">42%</div>
+                <div class="small-text">297 / 706</div>
+            </div>
+            <div class="horizontal-box" id="box4">
+                <div class="highlight-label">HIGHLIGHTS OF JUNE 2024:</div>
+                <!-- Add content for highlights here -->
+				<div class="small-text" align="left">• Afcons completes launching all RCC & i-girders at Bellandur station</div>
+				<div class="small-text" align="left">• Afcons completes launching all U Girders of Kadubeesanahalli station</div>
+				<div class="small-text" align="left">• Afcons completes launching all concourse pier caps of HSR station</div>
+				<div class="small-text" align="left">• Afcons completes launching all 5 steel girder spans of HSR flyover</div>
+            </div>
+        </div>
+		<div class="chart-container">
+			<div class="chart">
+				<div class="bar-chart">
+					<div class="month-buttons">
+						<button class="month-btn" data-month="Jan">Jan</button>
+						<button class="month-btn" data-month="Feb">Feb</button>
+						<button class="month-btn" data-month="Mar">Mar</button>
+						<button class="month-btn" data-month="Apr">Apr</button>
+						<button class="month-btn" data-month="May">May</button>
+						<button class="month-btn" data-month="Jun">Jun</button>
+						<button class="month-btn" data-month="Jul">Jul</button>
+						<button class="month-btn" data-month="Aug">Aug</button>
+						<button class="month-btn" data-month="Sep">Sep</button>
+						<button class="month-btn" data-month="Oct">Oct</button>
+						<button class="month-btn" data-month="Nov">Nov</button>
+						<button class="month-btn" data-month="Dec">Dec</button>
+					</div>
+					<canvas id="barChart"></canvas> <!-- Bar chart will be inserted here -->
+				</div>
+				<div class="line-chart">
+					<canvas id="lineChart"></canvas><!-- Line chart will be inserted here -->
+				</div>
+			</div>
+			<div class="issues-box">
+				<div class="issues-label">ISSUES:</div>
+					<!-- Add content for issues here --> <br>
+					<div class="small-text" align="left">
+					<dl>
+						<dt>1. <u>Silkboard:</u> Permission pending from Traffic Dept to start work for 5 piers at Silkboard. Awaiting the start of double decker flyover to ease traffic before permitting to barricade.
+						</dt>
+						<dd>
+						<br> • Affected Piers: ORP10L, ORP10R, ORP11L, ORP11R, ORP13. 
+						</dd>
+					</dl>	
+					<br>
+					<dl>
+						<dt>2. <u>Ibbaluru:</u> Designs pending for Portal Piers due to integration with Phase 3A. Future Sarjapura line shares the same portal beam as that of blue line.
+						</dt>
+						<dd>
+						<br>• Affected Piers: ORP164R, ORP165L, ORP165R, ORP166L, ORP167L.
+						</dd>
+					</dl>
+					<br>
+					<dl>
+						<dt>3. <u>Ibbaluru:</u> Designs pending for 1 Pier at Sarjapura Junction, holding up completion of it.
+						</dt>
+						<dd>
+						<br>• Affected Piers: ORP180
+						</dd>
+					</dl>
+					<br>
+					4. <u>Ibbaluru:</u> Designs pending for Ibbaluru Station due to integration with Phase 3A. Future Sarjapura line has an interchange station here, which is being built as a single common station.
+					<br>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+    </div>
+	
+	<div class="stations-header">COMPLETED GIRDERS</div>
+	<br>
+	<br>
+	<center><img src=".\Maps\2A_Alignment_Transparent_Resized.png" /a></center>
+
+    <div class="stations-header">STATIONS</div>
+
+    <table class="stations-table">
+        <tr>
+            <th rowspan="2">DESCRIPTION</th>
+            <th colspan="2">Silkboard</th>
+            <th colspan="2">HSR</th>
+            <th colspan="2">Agara</th>
+            <th colspan="2">Iblur</th>
+            <th colspan="2">Bellandur</th>
+            <th colspan="2">Kadubeesanahalli</th>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+        </tr>
+        <!-- Add more rows here based on the image data -->
+		<tr>
+            <th>Piers GL-CL</th>
+            <th style="background-color:"#C6E0B4">9</th>
+            <th>9</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>Concourse Pier Cap</th>
+            <th>9</th>
+            <th>5</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>Piers CL-TL</th>
+            <th>9</th>
+            <th>0</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>Platform Piercap</th>
+            <th>9</th>
+            <th>0</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>Platform Arms</th>
+            <th>18</th>
+            <th>0</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>11</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>16</th>
+            <th>16</th>
+            <th>16</th>
+        </tr>
+		<tr>
+            <th>Concourse Arms</th>
+            <th>18</th>
+            <th>4</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>8</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>16</th>
+            <th>16</th>
+            <th>16</th>
+        </tr>
+		<tr>
+            <th>CCL RCC & I-Girders</th>
+            <th>48</th>
+            <th>0</th>
+            <th>42</th>
+            <th>0</th>
+            <th>42</th>
+            <th>0</th>
+            <th>42</th>
+            <th>0</th>
+            <th>42</th>
+            <th>42</th>
+            <th>42</th>
+            <th>42	</th>
+        </tr>
+		<tr>
+            <th>PFL RCC & I-Girders</th>
+            <th>32</th>
+            <th>0</th>
+            <th>28</th>
+            <th>0</th>
+            <th>28</th>
+            <th>0</th>
+            <th>28</th>
+            <th>0</th>
+            <th>28</th>
+            <th>28</th>
+            <th>28</th>
+            <th>4</th>
+        </tr>
+		<tr>
+            <th>U-Girders</th>
+            <th>9</th>
+            <th>5</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+    </table>
+	
+	<div class="stations-header">SILKBOARD FLYOVER</div>
+
+    <table class="flyover-table">
+        <tr>
+            <th rowspan="2">DESCRIPTION</th>
+            <th colspan="2">A Ramp</th>
+            <th colspan="2">B Ramp</th>
+            <th colspan="2">C Ramp</th>
+            <th colspan="2">D Ramp</th>
+            <th colspan="2">E Ramp</th>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+            <th>Total</th>
+            <th>Completed</th>
+        </tr>
+        <!-- Add more rows here based on the image data -->
+		<tr>
+            <th>Piers</th>
+            <th style="background-color:"#C6E0B4">9</th>
+            <th>9</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>Pier Caps</th>
+            <th>9</th>
+            <th>5</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>Portal Beams</th>
+            <th>9</th>
+            <th>0</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>I-Girder Spans</th>
+            <th>9</th>
+            <th>0</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+            <th>8</th>
+            <th>0</th>
+            <th>8</th>
+            <th>8</th>
+        </tr>
+		<tr>
+            <th>Steel Girder Spans</th>
+            <th>18</th>
+            <th>0</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>11</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>16</th>
+        </tr>
+		<tr>
+            <th>Solid Slab Spans</th>
+            <th>18</th>
+            <th>4</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>8</th>
+            <th>16</th>
+            <th>0</th>
+            <th>16</th>
+            <th>16</th>
+        </tr>
+    </table>
+	<center><img src="https://i.imgur.com/XORDqXJ.jpeg" /a></center>
+	<br><br>
+	<center><div class="small-text">Find Additional Concept 3D Models Of Silkboard Flyover In Below Tweets</div> <br>
+	<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">One of the tallest piers will be for D loop flyover pier, which is a new flyover from HSR towards BTM layout. This flyover goes above both silkboard flyover and yellow line metro<a href="https://twitter.com/hashtag/BMRCL?src=hash&amp;ref_src=twsrc%5Etfw">#BMRCL</a> <a href="https://twitter.com/hashtag/NammaMetro?src=hash&amp;ref_src=twsrc%5Etfw">#NammaMetro</a> <a href="https://t.co/wiXNAo3DE0">pic.twitter.com/wiXNAo3DE0</a></p>&mdash; Naveen (@maddyvoldy) <a href="https://twitter.com/maddyvoldy/status/1761669105747366301?ref_src=twsrc%5Etfw">February 25, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	</center>
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		const monthlyData = {
+			Jan: [10, 11, 0, 0, 4, 10, 2, 0, 0],
+			Feb: [6, 8, 0, 0, 0, 13, 14, 0, 1],
+			Mar: [0, 4, 0, 0, 0, 6, 30, 0, 2],
+			Apr: [3, 3, 0, 0, 0, 0, 8, 0, 1],
+			May: [1, 7, 0, 0, 0, 0, 15, 0, 0],
+			Jun: [3, 9, 0, 0, 0, 0, 27, 0, 3],
+			Jul: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+			Aug: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+			Sep: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+			Oct: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+			Nov: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+			Dec: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+		};
+		// Bar Chart
+		const barCtx = document.getElementById('barChart').getContext('2d');
+		const barChart = new Chart(barCtx, {
+			type: 'bar',
+			data: {
+				labels: [['Normal', 'Piers'], ['Pier', 'Caps'], ['Portal', 'Piers'], ['Portal', 'Beams'], ['Split Portal', 'Piers'], ['Split Portal', 'Tiebeams'], 'U Girders', 'I Girders', ['Steel', 'Girders']],
+				datasets: [{
+					label: '',
+					data: monthlyData.Jun, // Start with January data
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.8)',
+						'rgba(54, 162, 235, 0.8)',
+						'rgba(255, 206, 86, 0.8)',
+						'rgba(75, 192, 192, 0.8)',
+						'rgba(153, 102, 255, 0.8)',
+						'rgba(255, 159, 64, 0.8)'
+					],
+					borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: 50
+						}
+					}, 
+				plugins: {
+					legend: {
+						display: false // Hide the legend
+						}
+					}
+				}
+			});
+
+		// Function to update chart data
+		function updateChart(month) {
+			barChart.data.datasets[0].data = monthlyData[month];
+			barChart.update();
+		}
+
+		// Event listeners for month buttons
+		document.querySelectorAll('.month-btn').forEach(button => {
+			button.addEventListener('click', function() {
+				// Remove active class from all buttons
+				document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
+				// Add active class to clicked button
+				this.classList.add('active');
+				// Update chart with selected month's data
+				updateChart(this.dataset.month);
+			});
+		});
+
+		// Set Current Month as default active button
+		document.querySelector('.month-btn[data-month="Jun"]').classList.add('active');
+
+		// Line Chart
+		const lineCtx = document.getElementById('lineChart').getContext('2d');
+		const lineChart = new Chart(lineCtx, {
+			type: 'line',
+			data: {
+				labels: ['Jan 24', 'Feb 24', 'Mar 24', 'Apr 24', 'May 24', 'Jun 24'],
+				datasets: [{
+					label: 'Girders Progress Last 6 Months',
+					data: [ '2', '14', '30', '8', '15', '27'
+					],
+					fill: false,
+					borderColor: 'rgb(75, 192, 192)',
+					tension: 0.1
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: 50
+					}
+				}
+			}
+		});
+</script>
+</body>
+</html>
