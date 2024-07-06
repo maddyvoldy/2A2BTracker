@@ -80,7 +80,6 @@
             padding: 15px;
             border-radius: 10px;
             text-align: center;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -94,11 +93,11 @@
             padding: 15px;
             border-radius: 10px;
             text-align: center;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
+			overflow-y: auto;
         }
 		.icon {
             font-size: 48px;
@@ -141,10 +140,11 @@
 		.chart-container {
             display: flex;
             justify-content: center;
+			flex-wrap: wrap;
 			margin: 10px;
 		}
 		.chart {
-            width: 35.5%; /* Match width of first 3 boxes */
+            width: 670px; /* Match width of first 3 boxes */
             margin-right: 10px;
 		}
 		
@@ -188,6 +188,7 @@
             border-radius: 10px;
             padding: 15px;
 			margin-left: 10px;
+			overflow-y: scroll;
         }
 
         .issues-label {
@@ -213,46 +214,28 @@
             padding: 10px 0;
         }
 
-        .stations-table {
-            width: 60%;
-            border-collapse: collapse;
-            margin-top: 20px;
-			margin-left: 330px;
+        .table-container {
+			width: 68%;
+			max-width: calc(75% + 25% + 20px); /* Width of chart + issues box + gap */
+			margin: 20px auto;
+			overflow-x: auto; /* For horizontal scrolling on small screens */
+		}
+
+		.stations-table, .flyover-table {
+			width: 100%;
+			border-collapse: collapse;
 			margin-bottom: 40px;
-        }
+		}
 
-        .stations-table th, .stations-table td {
-            border: 1px solid white;
-            padding: 12px;
-            text-align: center;
-			padding-bottom: 5px;
-			padding-top: 5px;
-        }
+		.stations-table th, .stations-table td, .flyover-table th, .flyover-table td {
+			border: 1px solid white;
+			padding: 5px 12px;
+			text-align: center;
+		}
 
-        .stations-table th {
+        .stations-table th, .flyover-table th {
             background-color: #283848;
         }
-		
-		.flyover-table {
-            width: 60%;
-            border-collapse: collapse;
-            margin-top: 20px;
-			margin-left: 380px;
-			margin-bottom: 40px;
-        }
-		
-		.flyover-table th, .flyover-table td {
-            border: 1px solid white;
-            padding: 12px;
-            text-align: center;
-			padding-bottom: 5px;
-			padding-top: 5px;
-        }
-
-        .flyover-table th {
-            background-color: #283848;
-        }
-		
 		
 		.tab {
 			display: inline-block;
@@ -260,18 +243,20 @@
 		}
 		.month-buttons {
 			display: flex;
-			justify-content: center;
+			justify-content: space-between;
 			margin-bottom: 2px;
 		}
 
 		.month-btn {
-			margin: 0 5px;
-			padding: 5px 10px;
+			flex: 1;
+			margin: 0 2px;
+			padding: 5px 2px;
 			background-color: #33cccc;
 			color: white;
 			border: none;
 			border-radius: 3px;
 			cursor: pointer;
+			font-size: 10px;
 		}
 
 		.month-btn.active {
@@ -287,9 +272,9 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-icon home-icon" onclick="location.href='index.html';"><img src=".\icons\home.png" width=30px; height=30px; /a></div>
-        <div class="sidebar-icon" onclick="location.href='page1.html';"><img src=".\icons\info2.png" width=30px; height=30px; /a></div>
-        <div class="sidebar-icon" onclick="location.href='page2.html';"><img src=".\icons\buildings1_2.png" width=30px; height=30px; /a></div>
-        <div class="sidebar-icon" onclick="location.href='page3.html';"><img src=".\icons\buildings1_2.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page1.html';"><img src=".\icons\info.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page2.html';"><img src=".\icons\buildings.png" width=30px; height=30px; /a></div>
+        <div class="sidebar-icon" onclick="location.href='page3.html';"><img src=".\icons\buildings.png" width=30px; height=30px; /a></div>
         <div class="sidebar-icon" onclick="location.href='page4.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
         <div class="sidebar-icon" onclick="location.href='page5.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
         <div class="sidebar-icon" onclick="location.href='page6.html';"><img src=".\icons\airplane.png" width=30px; height=30px; /a></div>
@@ -301,19 +286,19 @@
 
         <div class="box-container">
             <div class="vertical-box" id="box1">
-                <div class="icon"><img src=".\icons\Pillar3.png" width=120px; height=75px; /a></div>
+                <div class="icon"><img src=".\icons\Pillar.png" width=120px; height=75px; /a></div>
                 <div class="subtext">PIERS</div>
                 <div class="large-text">97%</div>
                 <div class="small-text">408 / 421</div>
             </div>
             <div class="vertical-box" id="box2">
-                <div class="icon"><img src=".\icons\PierCap3.png" width=120px; height=75px; /a></div>
+                <div class="icon"><img src=".\icons\PierCap.png" width=120px; height=75px; /a></div>
                 <div class="subtext">PIER CAPS & BEAMS</div>
                 <div class="large-text">82%</div>
                 <div class="small-text">344 / 417</div>
             </div>
             <div class="vertical-box" id="box3">
-                <div class="icon"><img src=".\icons\Girder2.png" width=120px; height=75px; /a></div>
+                <div class="icon"><img src=".\icons\Girder.png" width=120px; height=75px; /a></div>
                 <div class="subtext">GIRDERS</div>
                 <div class="large-text">42%</div>
                 <div class="small-text">297 / 706</div>
@@ -393,272 +378,273 @@
 	<center><img src=".\Maps\2A_Alignment_Transparent_Resized.png" /a></center>
 
     <div class="stations-header">STATIONS</div>
-
-    <table class="stations-table">
-        <tr>
-            <th rowspan="2">DESCRIPTION</th>
-            <th colspan="2">Silkboard</th>
-            <th colspan="2">HSR</th>
-            <th colspan="2">Agara</th>
-            <th colspan="2">Iblur</th>
-            <th colspan="2">Bellandur</th>
-            <th colspan="2">Kadubeesanahalli</th>
-        </tr>
-        <tr>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-        </tr>
-        <!-- Add more rows here based on the image data -->
-		<tr>
-            <th>Piers GL-CL</th>
-            <th style="background-color:"#C6E0B4">9</th>
-            <th>9</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>Concourse Pier Cap</th>
-            <th>9</th>
-            <th>5</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>Piers CL-TL</th>
-            <th>9</th>
-            <th>0</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>Platform Piercap</th>
-            <th>9</th>
-            <th>0</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>Platform Arms</th>
-            <th>18</th>
-            <th>0</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>11</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>16</th>
-            <th>16</th>
-            <th>16</th>
-        </tr>
-		<tr>
-            <th>Concourse Arms</th>
-            <th>18</th>
-            <th>4</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>8</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>16</th>
-            <th>16</th>
-            <th>16</th>
-        </tr>
-		<tr>
-            <th>CCL RCC & I-Girders</th>
-            <th>48</th>
-            <th>0</th>
-            <th>42</th>
-            <th>0</th>
-            <th>42</th>
-            <th>0</th>
-            <th>42</th>
-            <th>0</th>
-            <th>42</th>
-            <th>42</th>
-            <th>42</th>
-            <th>42	</th>
-        </tr>
-		<tr>
-            <th>PFL RCC & I-Girders</th>
-            <th>32</th>
-            <th>0</th>
-            <th>28</th>
-            <th>0</th>
-            <th>28</th>
-            <th>0</th>
-            <th>28</th>
-            <th>0</th>
-            <th>28</th>
-            <th>28</th>
-            <th>28</th>
-            <th>4</th>
-        </tr>
-		<tr>
-            <th>U-Girders</th>
-            <th>9</th>
-            <th>5</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-    </table>
-	
+	<div class="table-container">
+		<table class="stations-table">
+			<tr>
+				<th rowspan="2">DESCRIPTION</th>
+				<th colspan="2">Silkboard</th>
+				<th colspan="2">HSR</th>
+				<th colspan="2">Agara</th>
+				<th colspan="2">Iblur</th>
+				<th colspan="2">Bellandur</th>
+				<th colspan="2">Kadubeesanahalli</th>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+			</tr>
+			<!-- Add more rows here based on the image data -->
+			<tr>
+				<th>Piers GL-CL</th>
+				<th style="background-color:"#C6E0B4">9</th>
+				<th>9</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>Concourse Pier Cap</th>
+				<th>9</th>
+				<th>5</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>Piers CL-TL</th>
+				<th>9</th>
+				<th>0</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>Platform Piercap</th>
+				<th>9</th>
+				<th>0</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>Platform Arms</th>
+				<th>18</th>
+				<th>0</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>11</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>16</th>
+				<th>16</th>
+				<th>16</th>
+			</tr>
+			<tr>
+				<th>Concourse Arms</th>
+				<th>18</th>
+				<th>4</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>8</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>16</th>
+				<th>16</th>
+				<th>16</th>
+			</tr>
+			<tr>
+				<th>CCL RCC & I-Girders</th>
+				<th>48</th>
+				<th>0</th>
+				<th>42</th>
+				<th>0</th>
+				<th>42</th>
+				<th>0</th>
+				<th>42</th>
+				<th>0</th>
+				<th>42</th>
+				<th>42</th>
+				<th>42</th>
+				<th>42	</th>
+			</tr>
+			<tr>
+				<th>PFL RCC & I-Girders</th>
+				<th>32</th>
+				<th>0</th>
+				<th>28</th>
+				<th>0</th>
+				<th>28</th>
+				<th>0</th>
+				<th>28</th>
+				<th>0</th>
+				<th>28</th>
+				<th>28</th>
+				<th>28</th>
+				<th>4</th>
+			</tr>
+			<tr>
+				<th>U-Girders</th>
+				<th>9</th>
+				<th>5</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+		</table>
+	</div>	
 	<div class="stations-header">SILKBOARD FLYOVER</div>
-
-    <table class="flyover-table">
-        <tr>
-            <th rowspan="2">DESCRIPTION</th>
-            <th colspan="2">A Ramp</th>
-            <th colspan="2">B Ramp</th>
-            <th colspan="2">C Ramp</th>
-            <th colspan="2">D Ramp</th>
-            <th colspan="2">E Ramp</th>
-        </tr>
-        <tr>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-            <th>Total</th>
-            <th>Completed</th>
-        </tr>
-        <!-- Add more rows here based on the image data -->
-		<tr>
-            <th>Piers</th>
-            <th style="background-color:"#C6E0B4">9</th>
-            <th>9</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>Pier Caps</th>
-            <th>9</th>
-            <th>5</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>Portal Beams</th>
-            <th>9</th>
-            <th>0</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>I-Girder Spans</th>
-            <th>9</th>
-            <th>0</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-            <th>8</th>
-            <th>0</th>
-            <th>8</th>
-            <th>8</th>
-        </tr>
-		<tr>
-            <th>Steel Girder Spans</th>
-            <th>18</th>
-            <th>0</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>11</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>16</th>
-        </tr>
-		<tr>
-            <th>Solid Slab Spans</th>
-            <th>18</th>
-            <th>4</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>8</th>
-            <th>16</th>
-            <th>0</th>
-            <th>16</th>
-            <th>16</th>
-        </tr>
-    </table>
+	<div class="table-container">
+		<table class="flyover-table">
+			<tr>
+				<th rowspan="2">DESCRIPTION</th>
+				<th colspan="2">A Ramp</th>
+				<th colspan="2">B Ramp</th>
+				<th colspan="2">C Ramp</th>
+				<th colspan="2">D Ramp</th>
+				<th colspan="2">E Ramp</th>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+				<th>Total</th>
+				<th>Completed</th>
+			</tr>
+			<!-- Add more rows here based on the image data -->
+			<tr>
+				<th>Piers</th>
+				<th style="background-color:"#C6E0B4">9</th>
+				<th>9</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>Pier Caps</th>
+				<th>9</th>
+				<th>5</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>Portal Beams</th>
+				<th>9</th>
+				<th>0</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>I-Girder Spans</th>
+				<th>9</th>
+				<th>0</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+				<th>8</th>
+				<th>0</th>
+				<th>8</th>
+				<th>8</th>
+			</tr>
+			<tr>
+				<th>Steel Girder Spans</th>
+				<th>18</th>
+				<th>0</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>11</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>16</th>
+			</tr>
+			<tr>
+				<th>Solid Slab Spans</th>
+				<th>18</th>
+				<th>4</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>8</th>
+				<th>16</th>
+				<th>0</th>
+				<th>16</th>
+				<th>16</th>
+			</tr>
+		</table>
+	</div>
 	<center><img src="https://i.imgur.com/XORDqXJ.jpeg" /a></center>
 	<br><br>
 	<center><div class="small-text">Find Additional Concept 3D Models Of Silkboard Flyover In Below Tweets</div> <br>
